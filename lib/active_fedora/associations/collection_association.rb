@@ -25,9 +25,10 @@ module ActiveFedora
       end
 
       # Implements the ids reader method, e.g. foo.item_ids for Foo.has_many :items
+      # it discards any ids where the record it belongs to was marked for destruction.
       def ids_reader
         if loaded?
-          load_target.map do |record|
+          load_target.reject { |record| record.marked_for_destruction? }.map do |record|
             record.id
           end
         else

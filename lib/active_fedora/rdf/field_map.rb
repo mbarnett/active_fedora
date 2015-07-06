@@ -5,9 +5,9 @@ module ActiveFedora::RDF
   # but only with selected methods as outlined in def_delegators.
   class FieldMap
     extend Forwardable
-    
+
     def_delegators :@hash, :[], :[]=, :each, :keys
-    
+
     def initialize(hash = {}, &block)
       @hash = hash
       yield self if block_given?
@@ -57,7 +57,6 @@ module ActiveFedora::RDF
         def properties
           object.class.properties
         end
-
     end
 
     # Abstract class that implements the PolymorphicBuilder interface and is used for
@@ -85,6 +84,5 @@ module ActiveFedora::RDF
         Array(object.send(name))
       end
     end
-
   end
 end

@@ -365,8 +365,8 @@ describe "Autosave" do
   end
 
   context "with updated objects" do
-    
-    before :all do
+
+    before do
       class Library < ActiveFedora::Base
         has_many :books, autosave: true
       end
@@ -376,13 +376,14 @@ describe "Autosave" do
         property :title, predicate: ::RDF::DC.title
       end
     end
-    after :all do
+
+    after do
       Object.send(:remove_const, :Book)
       Object.send(:remove_const, :Library)
     end
-  
+
     let(:library) { Library.create }
-    
+
     before do
       library.books.create(title: ["Great Book"])
       library.books.first.title = ["Better book"]
@@ -394,6 +395,5 @@ describe "Autosave" do
     it "saves the new title" do
       expect(subject.first.title).to eql ["Better book"]
     end
-
   end
 end

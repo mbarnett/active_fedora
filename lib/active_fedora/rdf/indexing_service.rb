@@ -70,7 +70,7 @@ module ActiveFedora::RDF
 
       # returns the field map instance
       def fields
-        field_map_class.new do |field_map| 
+        field_map_class.new do |field_map|
           index_config.each { |name, index_field_config| field_map.insert(name, index_field_config, object) }
         end
       end
