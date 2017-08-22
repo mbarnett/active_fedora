@@ -49,7 +49,7 @@ module ActiveFedora::RDF
       def append_to_solr_doc(solr_doc, solr_field_key, field_info, val)
         self.class.create_and_insert_terms(solr_field_key,
                                            solr_document_field_value(val),
-                                           field_info.behaviors, solr_doc)
+                                           field_info, solr_doc)
       end
 
       def solr_document_field_name(field_key, prefix_method)
