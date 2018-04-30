@@ -1,6 +1,8 @@
 # Similar to ActiveSupport.class_attribute but with a setter that doesn't use the #{name}= syntax
 # This preserves backward compatibility with the API in ActiveTriples
 
+require "active_support/core_ext/module/remove_method"
+
 module ActiveFedora
   module InheritableAccessors
     extend ActiveSupport::Concern
